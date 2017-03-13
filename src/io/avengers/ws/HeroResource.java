@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.ws.rs.GET;
-import javax.ws.rs.Path;
+import javax.ws.rs.Path;import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -19,5 +19,12 @@ public class HeroResource {
 	public Set<Hero> getAllHeroes(){
 		HeroService hService = new HeroService();
 		return hService.findAll();
+	}
+	
+	@GET
+	 @Path("{id}")
+	public Hero getHeroById(@PathParam("id") int id){
+		HeroService hService = new HeroService();
+		return hService.findHero(id);
 	}
 }
