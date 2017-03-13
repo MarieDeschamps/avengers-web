@@ -15,7 +15,7 @@ public class MarvelApplication extends Application{
 		Set<Class<?>> set = new HashSet<>();
 		set.add(HeroResource.class);
 		set.add(MovieResource.class);
-		set.add(TestResource.class);
+		set.add(TeamResource.class);
 		return set;
 	}
 }
