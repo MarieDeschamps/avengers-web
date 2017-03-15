@@ -17,12 +17,8 @@
 	
 	<form action="add_hero.html" method="post" enctype="multipart/form-data">
 	<label>Hero name: <input type="text" name="alias" placeholder="hero name" required="required"></label><br/>
+	<label>Real name: <input type="text" name="realName" placeholder="real name"></label><br/>
 	<label>Upload picture: <input type="file" name="picture" placeholder="Picture"></label><br/>
-	<fieldset><legend>Popularity</legend>
-		<label>Likes: <input type="number" name="likes" value="0"></label><br/>
-	<label>Dislikes: <input type="number" name="dislikes" value="0"></label>
-	</fieldset>
-	<label for="important">VIP</label><input type="checkbox" name="important" id="important" value="yes"><br/>
 	<label>Team: 
 		<select name ="team">
 			<option selected="selected" value="-1">None</option>
