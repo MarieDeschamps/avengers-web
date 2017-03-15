@@ -3,9 +3,9 @@
 
 <head>
 	<meta charset="utf-8" content="text/html" />
-    <link rel="stylesheet" href="../styles/tables.css" />
-    <link rel="stylesheet" href="../styles/design.css" />
-    <link rel="stylesheet" href="../styles/menu.css" />
+    <link rel="stylesheet" href="./styles/tables.css" />
+    <link rel="stylesheet" href="./styles/design.css" />
+    <link rel="stylesheet" href="./styles/menu.css" />
 	<title>Marvel - Home</title>
 </head>
 
@@ -15,10 +15,10 @@
 	</header>
 	<h1>CREATE A NEW HERO</h1>
 	
-	<form action="add_hero.html" method="post" enctype="multipart/form-data">
 	<label>Hero name: <input type="text" name="alias" placeholder="hero name" required="required"></label><br/>
 	<label>Real name: <input type="text" name="realName" placeholder="real name"></label><br/>
 	<label>Upload picture: <input type="file" name="picture" placeholder="Picture"></label><br/>
+	<label>Abilities: <input type="text" name="abilities" placeholder="abilities"></label><br/>
 	<label>Team: 
 		<select name ="team">
 			<option selected="selected" value="-1">None</option>
@@ -26,15 +26,11 @@
 			<option value="2">X-men</option>
 		</select>
 	</label><br/>
-	<button type="reset">Reset</button>
-	<input type="submit" value="Create a new hero"> <!--revient au même que button, mais moins bien-->
-	</form>
-
-
+	<button id="submit">Create a new hero</button>
 
 	<footer>Built by Avengers Team !</footer>
 </body>
 
 
-
+<script type="text/javascript" src="add_hero.js"></script>
 </html>
