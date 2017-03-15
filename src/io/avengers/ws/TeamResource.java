@@ -2,6 +2,7 @@ package io.avengers.ws;
 
 import java.util.Set;
 
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -57,5 +58,19 @@ public class TeamResource {
 		new TeamService().linkTeamToHero(t,h);
 		
 		return Response.status(201).entity("\""+t.getName()+" "+ h.getAlias()+"\"").build();
+	}
+	
+	@DELETE
+	@Path("{teamId}")
+	public Response deleteHero(@PathParam("teamId") int teamId){
+		Team team = new TeamService().findTeam(teamId);
+		
+		if(team==null){
+			return Response.status(406).entity("\"Inexistant team\"").build();
+		}
+		
+		new TeamService().deleteTeam(team);
+		
+		return Response.status(204).header("x-deleted", team.getName()).build();
 	}
 }
