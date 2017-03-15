@@ -7,10 +7,13 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import io.avengers.domain.Hero;
 import io.avengers.domain.Team;
+import io.avengers.service.HeroService;
 import io.avengers.service.TeamService;
 
 @Path("teams")
@@ -39,5 +42,19 @@ public class TeamResource {
 		new TeamService().createTeam(team);
 		
 		return Response.status(201).entity("\""+team.getName()+"\"").build();
+	}
+	
+	@POST
+	public Response addHeroInTeam(@QueryParam("team") int teamId, @QueryParam("hero") int heroId){
+		Team t = new TeamService().findTeam(teamId);
+		Hero h = new HeroService().findHero(heroId);
+		
+		if(t==null || h==null){
+			return Response.status(406).entity("\"Wrong team or hero\"").build();
+		}
+		
+		new TeamService().linkTeamToHero(t,h);
+		
+		return Response.status(201).entity("\""+t.getName()+" "+ h.getAlias()+"\"").build();
 	}
 }
