@@ -1,6 +1,5 @@
 package io.avengers.ws;
 
-import java.util.List;
 import java.util.Set;
 
 import javax.ws.rs.GET;
@@ -11,9 +10,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import io.avengers.domain.Hero;
 import io.avengers.domain.Team;
-import io.avengers.service.HeroService;
 import io.avengers.service.TeamService;
 
 @Path("teams")
@@ -36,7 +33,7 @@ public class TeamResource {
 	@POST
 	public Response createTeam(Team team){
 		if(team==null || team.getName().isEmpty()){
-			return Response.status(406).entity("\"Empty hero\"").build();
+			return Response.status(406).entity("\"Empty team\"").build();
 		}
 		
 		new TeamService().createTeam(team);
