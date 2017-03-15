@@ -43,7 +43,8 @@ public class MovieResource {
 	}
 	
 	@POST
-	public Response addHeroInMovie(@QueryParam("movie") int movieId, @QueryParam("hero") int heroId){
+	@Path("{movieId}/{heroId}")
+	public Response addHeroInMovie(@PathParam("movieId") int movieId, @PathParam("heroId") int heroId){
 		Movie m = new MovieService().findMovie(movieId);
 		Hero h = new HeroService().findHero(heroId);
 		

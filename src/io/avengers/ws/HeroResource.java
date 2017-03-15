@@ -2,9 +2,11 @@ package io.avengers.ws;
 
 import java.util.Set;
 
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.Path;import javax.ws.rs.PathParam;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -39,6 +41,20 @@ public class HeroResource {
 		new HeroService().createHero(hero);
 		
 		return Response.status(201).entity("\""+hero.getAlias()+"\"").build();
+	}
+	
+	@DELETE
+	@Path("{heroId}")
+	public Response deleteHero(@PathParam("heroId") int heroId){
+		Hero hero = new HeroService().findHero(heroId);
+		
+		if(hero==null){
+			return Response.status(406).entity("\"Inexistant hero\"").build();
+		}
+		
+		new HeroService().deleteHero(hero);
+		
+		return Response.status(204).header("x-deleted", hero.getAlias()).build();
 	}
 		
 }

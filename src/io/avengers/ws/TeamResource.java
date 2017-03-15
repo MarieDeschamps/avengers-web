@@ -45,7 +45,8 @@ public class TeamResource {
 	}
 	
 	@POST
-	public Response addHeroInTeam(@QueryParam("team") int teamId, @QueryParam("hero") int heroId){
+	@Path("{teamId}/{heroId}")
+	public Response addHeroInTeam(@PathParam("teamId") int teamId, @PathParam("heroId") int heroId){
 		Team t = new TeamService().findTeam(teamId);
 		Hero h = new HeroService().findHero(heroId);
 		
