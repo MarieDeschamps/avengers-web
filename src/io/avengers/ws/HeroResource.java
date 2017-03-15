@@ -1,6 +1,5 @@
 package io.avengers.ws;
 
-import java.util.List;
 import java.util.Set;
 
 import javax.ws.rs.GET;

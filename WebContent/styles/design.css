@@ -1,0 +1,118 @@
+*{
+	box-sizing: border-box;
+}
+
+footer{
+	margin-top: 50px;
+	border-top: solid 1px black;
+	padding: 10px 5px;
+}
+
+body{
+	font-family: Raleway; /*police*/
+	font-size: 16px; /*taille de référence*/
+	padding: 0px;
+	margin: 0px;
+	margin-top:70px;
+	width: 100%;
+	height: 100%;
+}
+
+
+
+/* Pour les titres !!!!! */
+.title{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap-reverse;
+	align-items: center;
+	align-content: stretch;
+	justify-content: center;
+	width: 100%;
+	margin: 10px;
+	margin-bottom: 30px;
+}
+
+.title_picture{
+	flex: 0;
+}
+
+.title h1{
+	flex: 1;
+}
+
+h1{
+	color:#E61610;
+	text-align: center;
+	font-family: "Space Comics";
+	font-size: 2em; /*=2*16=32*/
+	margin-top: 30px;
+	margin-bottom: 30px;
+	width: 100%;
+}
+
+.content{
+	margin: 5px;
+	margin-top: 10px;
+}
+.content_title{
+	color:#E61610;
+	font-size: 1.1em;
+	font-weight: bold;
+}
+
+.error_message{
+	font-size: 25px; /*=*/
+	text-align: left;
+	color: red;
+	margin: 10px;
+}
+
+/* Pour les listings*/
+.listing{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+
+.element{
+	flex: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	margin-bottom: 10px;
+}
+
+.photo{
+	flex: 0;
+	height: 100%;
+}
+
+/* .photo>img{ */
+/* 	border-radius:150px; */
+/* } */
+
+.photo>img:hover{
+	border: solid 5px;
+	border-left-color: linear-gradient(to left, #E61610, white);
+}
+
+.info{
+	flex:0;
+	margin: 10px;
+	text-align: center;
+}
+
+.element a{
+	text-decoration: inherit;
+	color: inherit;
+
+}
+
+
+
+
+
