@@ -2,12 +2,12 @@ package io.avengers.ws;
 
 import java.util.Set;
 
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -55,5 +55,19 @@ public class MovieResource {
 		new MovieService().linkMovieToHero(m,h);
 		
 		return Response.status(201).entity("\""+m.getMovie_title()+" "+ h.getAlias()+"\"").build();
+	}
+	
+	@DELETE
+	@Path("{movieId}")
+	public Response deleteMovie(@PathParam("movieId") int movieId){
+		Movie movie = new MovieService().findMovie(movieId);
+		
+		if(movie==null){
+			return Response.status(406).entity("\"Inexistant movie\"").build();
+		}
+		
+		new MovieService().deleteMovie(movie);
+		
+		return Response.status(204).header("x-deleted", movie.getMovie_title()).build();
 	}
 }
