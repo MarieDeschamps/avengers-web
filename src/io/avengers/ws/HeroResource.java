@@ -40,7 +40,7 @@ public class HeroResource {
 		
 		new HeroService().createHero(hero);
 		
-		return Response.status(201).entity("\""+hero.getAlias()+"\"").build();
+		return Response.status(201).entity("{\"id\":"+hero.getId()+"}").build();
 	}
 	
 	@DELETE
