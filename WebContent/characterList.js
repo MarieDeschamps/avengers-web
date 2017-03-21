@@ -32,7 +32,8 @@ CharacterListComponent.prototype = {
 
 		$('body').find('h2.charactersList').after(this.$el);
 	},
-	add: function () {
+	create: function () {
+		var me = this;
 		console.log("button created");
 		button = $("button#submit");
 		button.on("click", function (event) {
@@ -54,26 +55,21 @@ CharacterListComponent.prototype = {
 					method: "POST",
 					body: JSON.stringify(hero)
 				})
-				.then(function(response) { return response.json(); })
-				.then(function(json) {
-					console.log(json);
-					hero.id = json.id;
-				})
-				.then(data => {
-					console.log(hero.id);
-					const newHero = new CharacterItem(hero, this);
-					this.collection.push(newHero);
-					this.$el.append(newHero.render());
-					console.log(this.$el);
-				});
-
-			console.log(hero.id);
-			//const newHero = new CharacterItem(hero, this);
-			//this.collection.push(newHero);
-			//this.$el.append(newHero.render());
-			//console.log(this.$el);
-
-		}).bind(this);
+				.then(response => {
+					response.json().then(json => {
+						console.log(json);
+						const character = new CharacterItem(json, me);
+						me.add(character);
+					})
+			});
+		});
+	},
+	add: function(hero){
+		console.log(hero.id);
+		this.collection.push(hero);
+		this.$el.append(hero.render());
+		console.log(this.$el);
+		return this.collection;
 	}
 }
 

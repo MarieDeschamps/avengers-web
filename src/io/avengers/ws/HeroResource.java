@@ -33,14 +33,11 @@ public class HeroResource {
 	
 	
 	@POST
-	public Response createHero(Hero hero){
+	public Hero createHero(Hero hero){
 		if(hero==null || hero.getAlias().isEmpty()){
-			return Response.status(406).entity("\"Empty hero\"").build();
+			return null;
 		}
-		
-		new HeroService().createHero(hero);
-		
-		return Response.status(201).entity("{\"id\":"+hero.getId()+"}").build();
+		return new HeroService().createHero(hero);
 	}
 	
 	@DELETE
