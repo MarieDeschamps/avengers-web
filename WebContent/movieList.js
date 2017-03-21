@@ -38,10 +38,16 @@ MovieListComponent.prototype = {
 		button = $("button#submit");
 		button.on("click", function (event) {
 			console.log("click done");
-			const movie = {
+			let movie = {
 				movie_title: $('input[name=title]').val()
 			}
+			let casting = [];
+			$("input[name='characterId']:checked").each(function () {
+				casting.push($(this).val());
+			});
+
 			console.log("creation of : ", movie);
+			console.log("charactersId:", casting);
 
 			fetch('marvel/movies',
 				{
@@ -55,13 +61,18 @@ MovieListComponent.prototype = {
 				.then(response => {
 					response.json().then(json => {
 						console.log(json);
-						const movie = new MovieItem(json, me);
-						me.add(movie);
+						movie = new MovieItem(json, me);
 					})
-			});
+					.then(response => {
+						casting.forEach(characterId => {
+							fetch('marvel/movies/' + movie.movie_id + '/' + characterId, { method: "POST" });
+						});
+					})
+					.then(response => { me.add(movie) });
+				})
 		});
 	},
-	add: function(movie){
+	add: function (movie) {
 		console.log(movie.movie_id);
 		this.collection.push(movie);
 		this.$el.append(movie.render());

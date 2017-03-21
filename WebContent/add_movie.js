@@ -1,6 +1,6 @@
 
 function characterRender(character) {
-	const template = `<label><input type="checkbox" name="characterId" id="${character.id}" value="first_checkbox"> ${character.alias}</label><br/>`;
+	const template = `<label><input type="checkbox" name="characterId" value="${character.id}"> ${character.alias}</label><br/>`;
 	// element JQueryfied
 	this.$el = $(template);
 	console.log(this.$el);
