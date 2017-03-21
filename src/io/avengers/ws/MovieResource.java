@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -42,17 +43,29 @@ public class MovieResource {
 	
 	@POST
 	@Path("{movieId}/{heroId}")
-	public Response addHeroInMovie(@PathParam("movieId") int movieId, @PathParam("heroId") int heroId){
+	public Movie addHeroInMovie(@PathParam("movieId") int movieId, @PathParam("heroId") int heroId){
 		Movie m = new MovieService().findMovie(movieId);
 		Hero h = new HeroService().findHero(heroId);
 		
 		if(m==null || h==null){
-			return Response.status(406).entity("\"Wrong movie or hero\"").build();
+			return null;
 		}
 		
-		new MovieService().linkMovieToHero(m,h);
+		return new MovieService().linkMovieToHero(m,h);
 		
-		return Response.status(201).entity("\""+m.getMovie_title()+" "+ h.getAlias()+"\"").build();
+		//return Response.status(201).entity("\""+m.getMovie_title()+" "+ h.getAlias()+"\"").build();
+	}
+	
+	@PUT
+	@Path("{movieId}")
+	public Movie updateMovie(@PathParam("movieId") int movieId){
+		Movie movie = new MovieService().findMovie(movieId);
+		
+		if(movie==null){
+			return null;
+		}
+		
+		return new MovieService().updateMovie(movie);
 	}
 	
 	@DELETE
