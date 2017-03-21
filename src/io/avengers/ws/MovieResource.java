@@ -32,14 +32,12 @@ public class MovieResource {
 		return mService.findMovie(id);
 	}
 	@POST
-	public Response createMovie(Movie movie){
+	public Movie createMovie(Movie movie){
 		if(movie==null || movie.getMovie_title().isEmpty()){
-			return Response.status(406).entity("\"Empty movie\"").build();
+			return null;
 		}
 		
-		new MovieService().createMovie(movie);
-		
-		return Response.status(201).entity("\""+movie.getMovie_title()+"\"").build();
+		return new MovieService().createMovie(movie);
 	}
 	
 	@POST
