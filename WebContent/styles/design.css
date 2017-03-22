@@ -112,6 +112,20 @@ h1{
 
 }
 
+button{
+	cursor:  pointer;
+}
+
+button.del{
+	margin-left: 10px;
+	color: white;
+	background-color: #E61610;
+	border-color: #F71511;
+	border-radius: 3px;
+	font-family: "Space Comics", Cambria, 'Times New Roman', sans-serif;
+	font-size: 0.5em;
+}
+
 
 
 
