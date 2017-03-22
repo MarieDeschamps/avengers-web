@@ -1,3 +1,4 @@
+import {CharacterListComponent} from './characterList';
 
 let component;
 $(document).ready(function(){

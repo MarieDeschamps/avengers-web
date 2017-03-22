@@ -1,4 +1,4 @@
-function CharacterListComponent() {
+export function CharacterListComponent() {
 
 }
 
@@ -108,3 +108,5 @@ CharacterItem.prototype = {
 	}
 
 }
+
+export default CharacterListComponent;
