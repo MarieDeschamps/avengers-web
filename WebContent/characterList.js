@@ -33,9 +33,9 @@ CharacterListComponent.prototype = {
 		$('body').find('h2.charactersList').after(this.$el);
 	},
 	create: function () {
-		var me = this;
+		let me = this;
 		console.log("button created");
-		button = $("button#submit");
+		let button = $('button#submit');
 		button.on("click", function (event) {
 			console.log("click done");
 			const hero = {
@@ -86,7 +86,7 @@ CharacterItem.prototype = {
                 <!--<div class="photo"> <img src="../../images/spiderman.png" alt="Spiderman picture"> </div>-->
                 <div class="info">${this.alias}</div>
 				</a>
-				<button>DELETE</button>
+				<button class="del">DELETE</button>
             </div>`;
 		// element JQueryfied
 		this.$el = $(template);
@@ -101,7 +101,7 @@ CharacterItem.prototype = {
 		fetch("marvel/heroes/" + this.id, { method: "delete" }).catch(error => application());
 
 		//remove ul
-		component.characters = component.collection.filter(c => c.id !== this.id);
+		this.listComponent.characters = this.listComponent.collection.filter(c => c.id !== this.id);
 		this.$el.remove();
 		console.log(this.$el);
 		return this.$el;

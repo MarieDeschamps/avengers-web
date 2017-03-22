@@ -1,8 +1,7 @@
 import {CharacterListComponent} from './characterList';
 
-let component;
 $(document).ready(function(){
-	component = new CharacterListComponent();
+	let component = new CharacterListComponent();
 	component.fetchAll().then(component.render.bind(component));
 	component.create();
 });
