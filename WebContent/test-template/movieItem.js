@@ -23,10 +23,10 @@ MovieItem.prototype = {
 	},
 	remove: function () {
 		console.log("delete movie " + this.movie_title);
-		fetch("marvel/movies/" + this.movie_id, { method: "delete" }).catch(error => application());
+		fetch(this.listComponent.path + '/' + this.movie_id, { method: "delete" }).catch(error => application());
 
 		//remove ul
-		component.movies = component.collection.filter(c => c.movie_id !== this.movie_id);
+		this.listComponent.movies = this.listComponent.collection.filter(c => c.movie_id !== this.movie_id);
 		this.$el.remove();
 		console.log(this.$el);
 		return this.$el;

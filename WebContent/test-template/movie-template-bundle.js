@@ -223,6 +223,7 @@ CharacterItem.prototype = {
 function MovieListComponent(depth) {
 	this.path = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__depthToString__["a" /* default */])(depth)+"marvel/movies";
 	this.listComponentGen = new __WEBPACK_IMPORTED_MODULE_0__listComponent__["a" /* default */](this.path);
+	this.id = this.movie_id;
 }
 
 MovieListComponent.prototype = {
@@ -253,7 +254,7 @@ MovieListComponent.prototype = {
 			console.log("creation of : ", item);
 			console.log("charactersId:", casting);
 
-			fetch(this.path,
+			fetch(me.path,
 				{
 					headers: {
 						'Accept': 'application/json',
@@ -269,7 +270,7 @@ MovieListComponent.prototype = {
 					})
 						.then(response => {
 							casting.forEach(id => {
-								fetch(me.path + item.id + '/' + id, { method: "POST" });
+								fetch(me.path + '/' + item.id + '/' + id, { method: "POST" });
 							});
 						})
 						.then(response => { me.add(item) });
@@ -539,10 +540,10 @@ MovieItem.prototype = {
 	},
 	remove: function () {
 		console.log("delete movie " + this.movie_title);
-		fetch("marvel/movies/" + this.movie_id, { method: "delete" }).catch(error => application());
+		fetch(this.listComponent.path + '/' + this.movie_id, { method: "delete" }).catch(error => application());
 
 		//remove ul
-		component.movies = component.collection.filter(c => c.movie_id !== this.movie_id);
+		this.listComponent.movies = this.listComponent.collection.filter(c => c.movie_id !== this.movie_id);
 		this.$el.remove();
 		console.log(this.$el);
 		return this.$el;

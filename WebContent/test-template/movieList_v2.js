@@ -5,6 +5,7 @@ import depthToString from './depthToString';
 export function MovieListComponent(depth) {
 	this.path = depthToString(depth)+"marvel/movies";
 	this.listComponentGen = new ListComponent(this.path);
+	this.id = this.movie_id;
 }
 
 MovieListComponent.prototype = {
@@ -35,7 +36,7 @@ MovieListComponent.prototype = {
 			console.log("creation of : ", item);
 			console.log("charactersId:", casting);
 
-			fetch(this.path,
+			fetch(me.path,
 				{
 					headers: {
 						'Accept': 'application/json',
@@ -51,7 +52,7 @@ MovieListComponent.prototype = {
 					})
 						.then(response => {
 							casting.forEach(id => {
-								fetch(me.path + item.id + '/' + id, { method: "POST" });
+								fetch(me.path + '/' + item.id + '/' + id, { method: "POST" });
 							});
 						})
 						.then(response => { me.add(item) });
