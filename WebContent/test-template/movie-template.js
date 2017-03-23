@@ -59,8 +59,7 @@ $(document).ready(function () {
 	</fieldset>`);
 
     let component = new MovieListComponent(depth);
-	component.fetchAndDisplay();
+	component.fetchAndDisplay()
 
-	characterListForMovie();
-
+	characterListForMovie("create",null,depth);
 });

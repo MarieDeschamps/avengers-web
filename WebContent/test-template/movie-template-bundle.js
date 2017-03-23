@@ -503,10 +503,9 @@ $(document).ready(function () {
 	</fieldset>`);
 
     let component = new __WEBPACK_IMPORTED_MODULE_0__movieList_v2__["a" /* default */](depth);
-	component.fetchAndDisplay();
+	component.fetchAndDisplay()
 
-	characterListForMovie();
-
+	characterListForMovie("create",null,depth);
 });
 
 /***/ }),
