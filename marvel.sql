@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 21 Mars 2017 à 08:49
+-- Généré le :  Lun 27 Mars 2017 à 14:06
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -120,8 +120,7 @@ INSERT INTO `movie` (`id`, `name`, `gross`, `budget`, `picture`, `history`, `dat
 (4, 'Xmen', 296, 75, NULL, NULL, '0000-00-00'),
 (5, 'Spiderman', 822, 140, NULL, NULL, '0000-00-00'),
 (6, 'Thor', 645, 170, NULL, NULL, '0000-00-00'),
-(7, 'Wolverine', 415, 120, NULL, NULL, '0000-00-00'),
-(8, 'test', NULL, NULL, NULL, NULL, NULL);
+(7, 'Wolverine', 415, 120, NULL, NULL, '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -275,12 +274,12 @@ ALTER TABLE `team_hero`
 -- AUTO_INCREMENT pour la table `heroes`
 --
 ALTER TABLE `heroes`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT pour la table `movie`
 --
 ALTER TABLE `movie`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT pour la table `team`
 --
