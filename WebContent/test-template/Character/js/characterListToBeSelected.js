@@ -1,4 +1,3 @@
-import MovieListComponent from './movieList';
 import CharacterListComponent from './characterList';
 
 function characterRender(character, checked) {
@@ -14,8 +13,8 @@ function characterRender(character, checked) {
 	return output;
 }
 
-function characterListForMovie(status, movie) {
-	let characterList = new CharacterListComponent();
+export function characterListForitem(status, item, depth) {
+	let characterList = new CharacterListComponent(depth);
 	characterList
 		.fetchAll()
 		.then(characterList => {
@@ -27,8 +26,8 @@ function characterListForMovie(status, movie) {
 
 			if (status === "modify") {
 				characterList.forEach(character => {
-					let movieHeroesID = movie.heroes.map(h => h.id);
-					if (movieHeroesID.includes(character.id)) {
+					let itemHeroesID = item.heroes.map(h => h.id);
+					if (itemHeroesID.includes(character.id)) {
 						output.append((characterRender(character, true)));
 					} else {
 						output.append((characterRender(character, false)));
@@ -45,10 +44,4 @@ function characterListForMovie(status, movie) {
 		});
 }
 
-$(document).ready(function () {
-	let component = new MovieListComponent();
-	component.fetchAndDisplay();
-
-	characterListForMovie();
-
-});
+export default characterListForitem;

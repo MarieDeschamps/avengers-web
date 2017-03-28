@@ -21,64 +21,66 @@ import io.avengers.service.MovieService;
 @Produces(MediaType.APPLICATION_JSON)
 public class MovieResource {
 	@GET
-	public Set<Movie> getAllMovies(){
+	public Set<Movie> getAllMovies() {
 		MovieService mService = new MovieService();
 		return mService.findAll();
 	}
-	
+
 	@GET
 	@Path("{id}")
-	public Movie getMovieById(@PathParam("id") int id){
+	public Movie getMovieById(@PathParam("id") int id) {
 		MovieService mService = new MovieService();
 		return mService.findMovie(id);
 	}
+
 	@POST
-	public Movie createMovie(Movie movie){
-		if(movie==null || movie.getMovie_title().isEmpty()){
+	public Movie createMovie(Movie movie) {
+		if (movie == null || movie.getMovie_title().isEmpty()) {
 			return null;
 		}
-		
+
 		return new MovieService().createMovie(movie);
 	}
-	
+
 	@POST
 	@Path("{movieId}/{heroId}")
-	public Movie addHeroInMovie(@PathParam("movieId") int movieId, @PathParam("heroId") int heroId){
+	public Movie addHeroInMovie(@PathParam("movieId") int movieId, @PathParam("heroId") int heroId) {
 		Movie m = new MovieService().findMovie(movieId);
 		Hero h = new HeroService().findHero(heroId);
-		
-		if(m==null || h==null){
+
+		if (m == null || h == null) {
 			return null;
 		}
-		
-		return new MovieService().linkMovieToHero(m,h);
-		
-		//return Response.status(201).entity("\""+m.getMovie_title()+" "+ h.getAlias()+"\"").build();
+
+		return new MovieService().linkMovieToHero(m, h);
+
+		// return Response.status(201).entity("\""+m.getMovie_title()+" "+
+		// h.getAlias()+"\"").build();
 	}
-	
+
 	@PUT
 	@Path("{movieId}")
-	public Movie updateMovie(@PathParam("movieId") int movieId){
+	public Movie updateMovie(@PathParam("movieId") int movieId) {
 		Movie movie = new MovieService().findMovie(movieId);
-		
-		if(movie==null){
+
+		if (movie == null) {
 			return null;
 		}
-		
+
 		return new MovieService().updateMovie(movie);
 	}
-	
+
 	@DELETE
 	@Path("{movieId}")
-	public Response deleteMovie(@PathParam("movieId") int movieId){
+	public Response deleteMovie(@PathParam("movieId") int movieId) {
 		Movie movie = new MovieService().findMovie(movieId);
-		
-		if(movie==null){
+
+		if (movie == null) {
 			return Response.status(406).entity("\"Inexistant movie\"").build();
 		}
-		
+
 		new MovieService().deleteMovie(movie);
-		
+
 		return Response.status(204).header("x-deleted", movie.getMovie_title()).build();
 	}
 }
