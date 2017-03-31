@@ -48,7 +48,7 @@ MovieListComponent.prototype = {
 					})
 						.then(response => {
 							casting.forEach(id => {
-								this.dataService.associate(me.path, movie.id, id);
+								me.dataService.associate(me.path, movie.id, id);
 							});
 						})
 						.then(response => { me.add(movie) });
