@@ -11,7 +11,7 @@ DataService.prototype = {
     },
 
     create: function (item) {
-        fetch(this.path,
+        return fetch(this.path,
 				{
 					headers: {
 						'Accept': 'application/json',
@@ -23,11 +23,11 @@ DataService.prototype = {
     },
 
     associate: function(path,firstID,secondID) {
-        fetch(path + '/' + firstID + '/' + secondID, { method: "POST" });
+        return fetch(path + '/' + firstID + '/' + secondID, { method: "POST" });
     },
 
     delete: function (id) {
-        fetch(this.path + '/' + id, { method: "delete" });
+        return fetch(this.path + '/' + id, { method: "delete" });
     }
 }
 

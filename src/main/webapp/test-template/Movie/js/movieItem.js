@@ -4,7 +4,7 @@ export function MovieItem(data, listComponent) {
 	Object.assign(this, data);
 	this.listComponent = listComponent;
 	this.collection = listComponent.collection;
-	this.dataService = new DataService(this.path);
+	this.dataService = new DataService(listComponent.path);
 	this.id = this.movie_id;
 	this.templateForListing = `
             <div class="element"><a href="./${this.movie_title}.html">

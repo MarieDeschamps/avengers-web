@@ -32,13 +32,15 @@ MovieListComponent.prototype = {
 		console.log("button created");
 		button.on("click", function (event) {
 			console.log("click done");
-			let movie = fillMovie();
+			let movie = {
+				movie_title: $('input[name=title]').val()
+			};
 			let casting = fillCastingForMovie();
 
 			console.log("creation of : ", movie);
 			console.log("link to charactersId:", casting);
 
-			this.dataService.create(movie)
+			me.dataService.create(movie)
 				.then(response => {
 					response.json().then(json => {
 						console.log(json);
@@ -57,12 +59,6 @@ MovieListComponent.prototype = {
 
 MovieListComponent.prototype.render = ListComponent.prototype.render;
 MovieListComponent.prototype.add = ListComponent.prototype.add;
-
-function fillMovie() {
-	return {
-		movie_title: $('input[name=title]').val()
-	};
-}
 
 function fillCastingForMovie() {
 	let casting = [];

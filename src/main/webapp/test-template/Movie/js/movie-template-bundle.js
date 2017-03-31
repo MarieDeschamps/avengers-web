@@ -104,7 +104,7 @@ DataService.prototype = {
     },
 
     create: function (item) {
-        fetch(this.path,
+        return fetch(this.path,
 				{
 					headers: {
 						'Accept': 'application/json',
@@ -116,11 +116,11 @@ DataService.prototype = {
     },
 
     associate: function(path,firstID,secondID) {
-        fetch(path + '/' + firstID + '/' + secondID, { method: "POST" });
+        return fetch(path + '/' + firstID + '/' + secondID, { method: "POST" });
     },
 
     delete: function (id) {
-        fetch(this.path + '/' + id, { method: "delete" });
+        return fetch(this.path + '/' + id, { method: "delete" });
     }
 }
 
@@ -225,13 +225,15 @@ MovieListComponent.prototype = {
 		console.log("button created");
 		button.on("click", function (event) {
 			console.log("click done");
-			let movie = fillMovie();
+			let movie = {
+				movie_title: $('input[name=title]').val()
+			};
 			let casting = fillCastingForMovie();
 
 			console.log("creation of : ", movie);
 			console.log("link to charactersId:", casting);
 
-			this.dataService.create(movie)
+			me.dataService.create(movie)
 				.then(response => {
 					response.json().then(json => {
 						console.log(json);
@@ -250,12 +252,6 @@ MovieListComponent.prototype = {
 
 MovieListComponent.prototype.render = __WEBPACK_IMPORTED_MODULE_0__generic_js_listComponent__["a" /* default */].prototype.render;
 MovieListComponent.prototype.add = __WEBPACK_IMPORTED_MODULE_0__generic_js_listComponent__["a" /* default */].prototype.add;
-
-function fillMovie() {
-	return {
-		movie_title: $('input[name=title]').val()
-	};
-}
 
 function fillCastingForMovie() {
 	let casting = [];
@@ -518,7 +514,7 @@ function MovieItem(data, listComponent) {
 	Object.assign(this, data);
 	this.listComponent = listComponent;
 	this.collection = listComponent.collection;
-	this.dataService = new __WEBPACK_IMPORTED_MODULE_0__generic_js_data_service__["a" /* default */](this.path);
+	this.dataService = new __WEBPACK_IMPORTED_MODULE_0__generic_js_data_service__["a" /* default */](listComponent.path);
 	this.id = this.movie_id;
 	this.templateForListing = `
             <div class="element"><a href="./${this.movie_title}.html">
